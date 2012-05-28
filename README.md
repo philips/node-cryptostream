@@ -10,16 +10,14 @@ Example Usage:
     var e = new EncryptStream(key);
     var d = new DecryptStream(key);
     
-    e.addListener('data', function(chunk) {
-      d.write(chunk);
-    });
-    e.addListener('end', function() {
-      d.end();
-    });
-    d.addListener('data', function(chunk) {
-      if (chunk.length > 0)
-        console.log('data: ' + chunk);
-    });
-    
-    e.write("Hello world", 'binary');
-    e.end();
+    fs.createReadStream(__filename).pipe(e).pipe(d).pipe(process.stdout, {end: false})
+
+EncryptStream/DecryptStream (opts)
+
+`opts` may be a the key (string) or a object. If `opts` is an object it _must_
+have properties for `key` and `algorithm`, and _may_ have properties
+`inputEncoding` and `outputEncoding`
+
+also see [crypto.createCypher][createCypher]
+
+[createCypher]: http://nodejs.org/api/crypto.html#crypto_crypto_createcipher_algorithm_password
