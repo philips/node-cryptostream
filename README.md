@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/philips/node-cryptostream.png)](http://travis-ci.org/philips/node-cryptostream)
 Stream object for crypto.
 
 Example Usage:
